@@ -14,6 +14,9 @@ import { OptionsComponent } from "./demos/options/options.component";
 import { TemplateComponent } from "./demos/template/template.component";
 import { ValueChangedComponent } from "./demos/value-changed/value-changed.component";
 import { DataService } from "./services/data.service";
+import { MutiStepFormComponent } from "./components/multi-step-form/muti-step-form.component";
+import { FormStepDirective } from "./directives/form-step.directive";
+import { StepFormSelectorComponent } from "./components/step-form-selector/step-form-selector.component";
 
 @NgModule({
   declarations: [
@@ -26,7 +29,10 @@ import { DataService } from "./services/data.service";
     MultipleComponent,
     CustomArrayComponent,
     ValueChangedComponent,
-    AllowClearComponent
+    AllowClearComponent,
+    MutiStepFormComponent,
+    FormStepDirective,
+    StepFormSelectorComponent
   ],
   imports: [BrowserModule, FormsModule, NgSelect2Module],
   providers: [DataService],

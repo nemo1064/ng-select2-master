@@ -1,9 +1,214 @@
-<div class="container">
-  <h1>TEST</h1>
-  <p class="lead">Site under mantiance:</p>
-  <hr />
-  <app-multiple></app-multiple>
-  <!--<app-basic></app-basic>
+<app-muti-step-form
+  [formData]="step_form"
+  (nextAction)="setFormData($event)"
+  (finishAction)="finishAction($event)"
+>
+  <ng-template let-step_content let-nextStepHandle="nextStepHandle">
+    <div appFormStep id="1">
+      <div class="form-wrapper">
+        <h5>{{ step_content.title }}</h5>
+
+        <form #f="ngForm">
+          <div class="form-group">
+            <label class="form-label" for="orgName">Organization Name</label>
+            <input
+              class="form-input"
+              [ngClass]="{
+                'is-error':
+                  orgName.invalid && (orgName.dirty || orgName.touched)
+              }"
+              type="text"
+              id="orgName"
+              name="orgName"
+              [ngModel]="step_content.data.orgName"
+              #orgName="ngModel"
+              placeholder="Organization Name"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="orgType">Organization Type</label>
+            <input
+              class="form-input"
+              [ngClass]="{
+                'is-error':
+                  orgType.invalid && (orgType.dirty || orgType.touched)
+              }"
+              name="orgType"
+              [ngModel]="step_content.data.orgType"
+              type="text"
+              id="orgType"
+              #orgType="ngModel"
+              placeholder="Organization Type"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="orgStatus"
+              >Organization Status</label
+            >
+            <input
+              class="form-input"
+              [ngClass]="{
+                'is-error':
+                  orgStatus.invalid && (orgStatus.dirty || orgStatus.touched)
+              }"
+              name="orgStatus"
+              [ngModel]="step_content.data.orgStatus"
+              type="text"
+              id="orgStatus"
+              #orgStatus="ngModel"
+              placeholder="Organization Status"
+              required
+            />
+            <select
+              style="width:100%"
+              [ngClass]="{
+                'is-error':
+                  orgStatus.invalid && (orgStatus.dirty || orgStatus.touched)
+              }"
+              name="orgStatus"
+              [ngModel]="step_content.data.orgStatus"
+              id="orgStatus"
+              #orgStatus="ngModel"
+              required
+            >
+              <option value="">Select a Value</option>
+              <option value="active">Active</option>
+              <option value="inactive">Inactive</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="domain">Domain</label>
+            <input
+              class="form-input"
+              [ngClass]="{
+                'is-error': domain.invalid && (domain.dirty || domain.touched)
+              }"
+              name="domain"
+              [ngModel]="step_content.data.domain"
+              type="text"
+              id="domain"
+              #domain="ngModel"
+              placeholder="Domain"
+              required
+            />
+          </div>
+        </form>
+        <button
+          class="btn btn-success"
+          [disabled]="f.invalid"
+          (click)="nextStepHandle(f.value)"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!--<ng-template let-step_content let-nextStepHandle="nextStepHandle" let-backStepHandle="backStepHandle">
+      <div appFormStep id='2'>
+        <div class="form-wrapper">
+          <h5>{{step_content.title}}</h5>-->
+  <ng-template let-step_content let-nextStepHandle="nextStepHandle">
+    <div appFormStep id="2">
+      <div class="form-wrapper">
+        <h5>{{ step_content.title }}</h5>
+
+        <form #f="ngForm">
+          <div class="form-group">
+            <label class="form-label" for="adminName">Name</label>
+            <input
+              class="form-input"
+              [ngClass]="{
+                'is-error':
+                  adminName.invalid && (adminName.dirty || adminName.touched)
+              }"
+              type="text"
+              id="adminName"
+              name="adminName"
+              [ngModel]="step_content.data.adminName"
+              #orgName="ngModel"
+              placeholder="Name"
+              required
+            />
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="adminEmail">Email</label>
+            <input
+              class="form-input"
+              [ngClass]="{
+                'is-error':
+                  adminEmail.invalid && (adminEmail.dirty || adminEmail.touched)
+              }"
+              name="adminEmail"
+              [ngModel]="step_content.data.adminEmail"
+              type="text"
+              id="adminEmail"
+              #domain="ngModel"
+              placeholder="Email"
+              required
+            />
+          </div>
+        </form>
+        <button
+          class="btn btn-success"
+          [disabled]="f.invalid"
+          (click)="nextStepHandle(f.value)"
+        >
+          Next
+        </button>
+      </div>
+    </div>
+  </ng-template>
+
+  <!--<form #f="ngForm">
+            <div class="form-group">
+            <label class="form-label" for="company">Company</label>
+            <input class="form-input" [ngModel]="step_content.data.address" #address="ngModel" type="text" name="address" id="company" required placeholder="Company" required [ngClass]="{'is-error': address.invalid && (address.touched || address.dirty)}">
+          </div>
+          </form>
+          <button class="btn btn-error" (click)="backStepHandle()">Back</button>
+          <button class="btn btn-success" [disabled]="f.invalid" (click)="nextStepHandle({address: address.value})">Next</button>
+        </div>
+      </div>
+  </ng-template>-->
+
+  <ng-template let-step_content let-nextStepHandle="nextStepHandle">
+    <div appFormStep id="2">
+      <div class="form-wrapper">
+        <h5>{{ step_content.title }}</h5>
+        <div class="form-group">
+          <label class="form-label" for="gilbracoProducts"
+            >Gilbracco products</label
+          >
+          <input
+            class="form-input"
+            [ngClass]="{
+              'is-error':
+                gilbracoProducts.invalid &&
+                (gilbracoProducts.dirty || gilbracoProducts.touched)
+            }"
+            name="gilbracoProducts"
+            [ngModel]="step_content.data.gilbracoProducts"
+            type="text"
+            id="gilbracoProducts"
+            #gilbracoProducts="ngModel"
+            required
+          />
+          <!--<select style="width:100%" [ngClass]="{'is-error': gilbracoProducts.invalid && (gilbracoProducts.dirty || gilbracoProducts.touched)}" name="gilbracoProducts" [ngModel]="step_content.data.gilbracoProducts" type="text" id="gilbracoProducts" #gilbracoProducts="ngModel" required>-->
+          <ng-select2
+            [data]="productData"
+            [options]="options"
+            [width]="500"
+            [(ngModel)]="value"
+          >
+          </ng-select2>
+        </div>
+        <!--<app-basic></app-basic>
   <hr>
   <app-options></app-options>
   <hr>
@@ -19,4 +224,8 @@
   <app-value-changed></app-value-changed>
   <hr>
   <app-allow-clear></app-allow-clear>
---></div>
+-->
+      </div>
+    </div></ng-template
+  ></app-muti-step-form
+>
